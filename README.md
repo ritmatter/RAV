@@ -7,7 +7,7 @@ and their length is specified by the user.  The shard length can also vary rando
 Usage:
 
 With shard length variation:
-./app.py <SRC_FILE> <DST_FILE> <shard_lower_bound>-<shard_upper_bound> <total_length>
+./app.py SRC_FILE DST_FILE shard_lower_bound-shard_upper_bound total_length
 
 Without shard length variation:
-./app.py <SRC_FILE> <DST_FILE> <shard_length> <total_length>
+./app.py SRC_FILE DST_FILE shard_length total_length
