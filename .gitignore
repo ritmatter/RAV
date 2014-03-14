@@ -1,3 +1,8 @@
+.DS_STORE
+uploads/*
+venv/*
+sounds/*
+
 *.py[cod]
 
 # C extensions
