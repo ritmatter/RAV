@@ -8,3 +8,11 @@ This application is useful for creating interesting ambient sounds or purely ran
 
 Both wav and mp3 formats are supported.  The sound file returned will be in mp3 format.
 
+RAV relies on the following libraries to help with various processes:
+
+flask : Putting together the web application
+scipy : Reading and writing wav files
+numpy : Manipulating samples
+pydub : Converting between wav and mp3 formats
+
+
