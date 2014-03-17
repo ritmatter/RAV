@@ -2,6 +2,7 @@
 uploads/*
 venv/*
 sounds/*
+mixes/*
 
 *.py[cod]
 
