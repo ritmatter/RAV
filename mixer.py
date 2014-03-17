@@ -1,8 +1,8 @@
 #!/usr/bin/python2.7
 import numpy as np
 from scipy.io import wavfile
-#import matplotlib.pyplot as plt
 from random import randint
+import input_handler as ih
 import sys
 import os
 
@@ -78,12 +78,6 @@ def checkArgs(argv, argc):
         sys.exit()
 
 def mix(file, lower, upper, total, clip_name):
-
-    # fname = 'XC135672-Red-winged\ Blackbird1301.mp3'
-    # oname = 'temp.wav'
-    # cmd = 'lame --decode {0} {1}'.format( fname,oname )
-    # os.system(cmd)
-
     sampling_rate, sig = wavfile.read(file);
     print sampling_rate
     num_samples = sig.shape[0]
@@ -92,6 +86,7 @@ def mix(file, lower, upper, total, clip_name):
     sig = scrambleWithIndex(sig, sample_size, sampling_rate, channels, num_samples, lower, upper, total)
     filename = "mixes/" + clip_name + ".wav"
     wavfile.write(filename, sampling_rate, np.array(sig))
+    ih.convert_to_mp3(filename)
 
 # if ("-" in sys.argv[3]):
 #     try:

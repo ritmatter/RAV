@@ -28,12 +28,13 @@ def index():
 			flash(e.msg)
 			return redirect(url_for('index'))
 
-		mixer.mix(file, bsl, msl, total, clip_name)
-		return redirect(url_for('mixed_file', filename=clip_name + ".wav"))
-		#filename = secure_filename(file.filename)
-		#file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+		filename = secure_filename(file.filename)
+		file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+		filename = ih.convert_to_wav(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+		file = open(filename, 'r')
 
-		#return redirect(url_for('uploaded_file', filename=filename))
+		mixer.mix(file, bsl, msl, total, clip_name)
+		return redirect(url_for('mixed_file', filename=clip_name + ".mp3"))
 
 	# If we had a get request, return the form
 	return render_template('index.html')
