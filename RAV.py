@@ -1,11 +1,11 @@
 import os
-from flask import Flask, request, redirect, url_for, render_template, send_from_directory
+from flask import Flask, request, redirect, url_for, render_template, send_from_directory, flash
 from werkzeug.utils import secure_filename
 import mixer
 import input_handler as ih
 
 app = Flask(__name__)
-
+app.secret_key = '\x05\xa3\xdfu\xad\xd9\x7f|\r\x12\xa5S\x18)0\x8cE\xe7\xd8?\x81\xe4\x1dC'
 UPLOAD_FOLDER = 'uploads/'
 MIX_FOLDER = 'mixes/'
 
@@ -25,7 +25,8 @@ def index():
 		try:
 			bsl, msl, total = ih.check_inputs(file, base_shard_length, max_shard_length, total_time)
 		except ih.Error as e:
-			return e.msg
+			flash(e.msg)
+			return redirect(url_for('index'))
 
 		mixer.mix(file, bsl, msl, total, clip_name)
 		return redirect(url_for('mixed_file', filename=clip_name + ".wav"))
@@ -35,7 +36,7 @@ def index():
 		#return redirect(url_for('uploaded_file', filename=filename))
 
 	# If we had a get request, return the form
-	return render_template('mixer.html')
+	return render_template('index.html')
 
 @app.route('/mixes/<filename>')
 def mixed_file(filename):
