@@ -1,13 +1,9 @@
 <!doctype html>
+{% extends "bootstrap/base.html" %}
 <title>RAV</title>
-{% block header %}{% endblock %}
-{% with messages = get_flashed_messages() %}
-  {% if messages %}
-    <ul class=flashes>
-    {% for message in messages %}
-      <li>{{ message }}</li>
-    {% endfor %}
-    </ul>
-  {% endif %}
-{% endwith %}
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+<script type="text/javascript">
+  var $SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
+</script>
+{% block title %}RAV{% endblock %}
 {% block body %}{% endblock %}
